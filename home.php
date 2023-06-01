@@ -27,6 +27,14 @@ session_start();
 
         <?php if(isset($_SESSION['status'])):?>
 
+            <?php if($_SESSION['role'] === 'admin'): ?>
+                <a href="#">Dashboard Admin</a>
+
+            <?php elseif($_SESSION['role'] === 'operator'): ?>
+                <a href="#">Dashboard Operator</a>
+
+            <?php endif;?>
+
             <div class="profile">
                 <button class="profile-button">
                     <img class="profile-image" src="img/2.PNG" alt="PP">
@@ -35,12 +43,13 @@ session_start();
                 <div class="dropdown-content">
                     <div class="sign_info">
                         <p>Signed is as</p>
-                        <p class="fullname"><?= $_SESSION['nama_lengkap'] ?></p>
+                        <p class="fullname"><?= $_SESSION['name'] ?></p>
                     </div>
 
                     <a class="dropdown" href="#">My Profile</a>
                     <a class="dropdown" href="#">Edit Profile</a>
                     <a class="dropdown" href="#">Settings</a>
+                    <a class="dropdown" href="#">Help</a>
                     <a class="dropdown" href="#">Help</a>
 
                     <?php if ($_SESSION['role'] === 'admin') : ?>
@@ -48,7 +57,7 @@ session_start();
                     <?php elseif ($_SESSION['role'] === 'operator') : ?>
                         <a class="dropdown" href="#">Dashboard Operator</a>
                     <?php endif; ?>
-                    <a class="dropdown" href="#">Log Out</a>
+                    <a class="dropdown" href="database/logout.php">Log Out</a>
                 </div>
             </div>
 
@@ -68,7 +77,10 @@ session_start();
             <i class="add-cart fa-solid fa-cart-shopping"></i>
             <a href="shopping.php" class="main-btn">Shop Now </a>
         </div>
-            <img src="img/2.PNG" alt="fullo" class="main-img">
+            <!-- <img src="img/2.PNG" alt="fullo" class="main-img"> -->
     </section>
+
+
+    <script src="script.js"></script>
 </body>
 </html>

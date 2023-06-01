@@ -120,9 +120,10 @@ switch ($aksi) {
     case 'insert_user':
         $nama_lengkap = $_POST['nama_lengkap'];
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
-        $repeat_password = md5($_POST['password-repeat']);
+        $password = $_POST['password'];
+        $repeat_password = $_POST['password-repeat'];
         $role = $_POST['role'];
+
         $user = getUserByEmail($email);
         if (mysqli_num_rows($user) > 0 ) {
             $msg = "Email sudah terdaftar"; 
@@ -131,8 +132,8 @@ switch ($aksi) {
             $msg = "Password Tidak Sama";
             $loc = "form_register.php";
         } else {
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $result = insertUser($nama_lengkap, $email, $password, $role);
+            $pass = password_hash($password, PASSWORD_DEFAULT);
+            $result = insertUser($nama_lengkap, $email, $pass, $role);
             if ($result) {
                 $msg = "Register Berhasil";
                 $loc = "login_form.php";
@@ -145,28 +146,29 @@ switch ($aksi) {
     //aksi untuk login
     case 'login_user':
         $email = $_POST['email'];    
-        $password = md5($_POST['password']);
-        $result = cekLogin($email, $password);
-        if (mysqli_num_rows($result) > 0){    
-            $row = mysqli_fetch_assoc($result);
+        $password = $_POST['password'];
+        $result = cekLogin($email);
+        if (mysqli_num_rows($result) > 0){ 
+            $row = mysqli_fetch_assoc($result);   
+            if(password_verify($password, $row['password'])){
+                
+                $_SESSION['status'] = true;
+                $_SESSION['name'] = $row['nama_lengkap'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = $row['role'];
 
-            $_SESSION['status'] = true;
-            $_SESSION['name'] = $row['nama_lengkap'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['role'] = $row['role'];
-
-            // if(isset($_POST['remember'])) {
-            //     setcookie('kue', 'titil', time()+86400, '/');
-            // }
-
-            $msg = "Login Berhasil";
-            $loc = "../home.php";
+                $msg = "Login Berhasil";
+                $loc = "../home.php";
+            } else {
+                $msg = "Email Atau Password Salah";
+                $loc = "login_form.php";
+            }
         } else {
             $msg = "Email Atau Password Salah";
             $loc = "login_form.php";
         }
         break;
- }
+}
 
 if (!empty($msg)){
     echo "<script>
