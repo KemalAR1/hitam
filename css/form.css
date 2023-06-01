@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanuman&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hanuman', serif;
+}
+body{
+  background: #d1261a;
+  padding: 0 10px;
+}
+
+:root{
+  --red-color: #d1261a;
+}
+
+.wrapper{
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  margin: 130px auto;
+  box-shadow: 8px 8px 8px rgba(0,0,0,0.300);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.wrapper .title{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #d1261a;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.wrapper .form{
+  width: 100%;
+}
+
+.wrapper .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper .form .inputfield .icon{
+   width: 50px;
+   color: #757575;
+   font-size: larger;
+}
+
+.wrapper .form .inputfield .input,
+.wrapper .form .inputfield .textarea{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.wrapper .form .inputfield .textarea{
+  width: 100%;
+  height: 125px;
+  resize: none;
+}
+
+.wrapper .form .inputfield .custom_select{
+  position: relative;
+  width: 100%;
+  height: 37px;
+}
+
+.wrapper .form .inputfield .custom_select:before{
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  border: 8px solid;
+  border-color: #d5dbd9 transparent transparent transparent;
+  pointer-events: none;
+}
+
+.wrapper .form .inputfield .custom_select select{
+  -webkit-appearance: none;
+  -moz-appearance:   none;
+  appearance:        none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #d5dbd9;
+  border-radius: 3px;
+}
+
+
+.wrapper .form .inputfield .input:focus,
+.wrapper .form .inputfield .textarea:focus,
+.wrapper .form .inputfield .custom_select select:focus{
+  border: 1px solid #afffff;
+}
+
+.wrapper .form .inputfield p{
+   font-size: 14px;
+   color: #757575;
+}
+
+.wrapper .form .inputfield .btn{
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 20px; 
+  border: 0px;
+  background:  #d1261a;;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50px;
+  outline: none;
+}
+
+.wrapper .form .inputfield .btn:hover{
+  background: rgb(134, 216, 216);
+}
+
+.wrapper .form .inputfield:last-child{
+  margin-bottom: 0;
+}
+
+.wrapper .form .inputfield .link{
+    text-decoration: none;
+}
+
+.wrapper .form .inputfield .link:hover{
+    text-decoration: underline;
+}
