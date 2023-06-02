@@ -194,9 +194,9 @@ function insertUser($nama_lengkap, $email, $password, $role){
 }
 
 /** fungsi untuk query cek email dan password ada atau tidak di database */
-function cekLogin($email, $password){
+function cekLogin($email){
     $conn = conn();
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
